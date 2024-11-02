@@ -1,0 +1,38 @@
+<header>
+    <nav class="header-nav">
+        <p class="header-title">PARKING APP</p>
+        <div class="nav-links">
+            <a [routerLink]="['/reporte']" class="reporte">Reporte</a>
+            <a [routerLink]="['/precios']">Precios</a>
+            <a [routerLink]="['/login']">Cerrar sesión</a>
+        </div>
+    </nav>
+</header>
+
+<main>    
+    <section id="tabla">
+        <div id="header-tabla">
+            <div>{{ header.nro }}</div>
+            <div>{{ header.deshabilitada }}</div>
+            <div>{{ header.ingreso }}</div>
+            <div>{{ header.acciones }}</div>        
+        </div>
+
+        <div *ngFor="let fila of filas; let i = index" class="fila-tabla">
+            <div>{{ fila.id }}</div>
+            <div>
+                <span [ngClass]="{ disponible: fila.deshabilitada, ocupado: !fila.deshabilitada }">
+                    {{ fila.deshabilitada ? 'DISPONIBLE' : 'NO DISPONIBLE' }}
+                </span>
+            </div>
+            <div>{{ fila.descripcion }}</div>
+            <div class="acciones-container">
+                <button (click)="cambiarDisponibilidadCochera(fila.id, $event)">🚫</button>
+                <button (click)="eliminarFila(fila.id, $event)" class="boton-eliminar">🗑</button>
+            </div>   
+        </div> 
+        <div class="boton-agregar-fila">
+            <button (click)="agregarFila()" class="boton-resaltado">+</button>
+        </div>
+    </section>
+</main>

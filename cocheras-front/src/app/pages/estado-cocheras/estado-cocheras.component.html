@@ -1,0 +1,25 @@
+<app-header></app-header>
+<a [routerLink]="['/login']">Cerrar sesión</a>
+
+<main class="flex-column-center">
+<div class="tabla">
+    <div class="header-tabla">
+        <div>Nro</div>
+        <div>Disponibilidad</div>
+        <div>Ingreso</div>
+        <div>Acciones</div>
+    </div>
+    @for (fila of filas; track $index) {
+        <div>
+            <div>{{ fila.id }}</div>
+            <div><span [ngClass]="{disponible: !fila.deshabilitada, ocupado: fila.deshabilitada}">{{ fila.deshabilitada ? 'No disponible' : 'Disponible'}}</span></div>
+            <div></div>
+            <div class="acciones-container">
+                <button (click)="cambiarDisponibilidadCochera(fila.id)"><img src="img/icons/prohibido.png" alt="Cambiar disponibilidad fila"></button>
+                <button (click)="eliminarFila(fila.id)"><img src="img/icons/contenedor-de-basura.png" alt="Borrar fila"></button>
+            </div>
+        </div>
+    }
+</div>
+<button (click)="agregarFila()" class="boton-resaltado" id="agregar-cochera">+</button>
+ </main>

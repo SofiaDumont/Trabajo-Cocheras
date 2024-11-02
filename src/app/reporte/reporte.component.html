@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="reportes-section">
+        <h1>PARKING APP</h1>
+        <h2>REPORTES</h2>
+        <a class="logout-btn" [routerLink]="['/Login']">Cerrar sesión</a>
+        <div>
+            <a [routerLink]="['/estado-cocheras']" class="reportes">Estado Cocheras</a>
+        </div>
+    </div>
+    
+    <div class="action-buttons">
+        <button (click)="agregarFila()" class="boton-resaltado">+</button>
+    </div>
+
+    <div id="tabla"> <!-- Cambiado de "tabla" a "id=tabla" -->
+        <div class="header-tabla"> <!-- Asegúrate de que la clase coincida -->
+            <div>Nro.</div>
+            <div>Mes</div>
+            <div>Uso</div>
+            <div>Cobranza</div>
+        </div>
+
+        <div *ngFor="let fila of filas; let i = index" class="fila-tabla">
+            <div>{{ fila.nro }}</div>
+            <div>{{ fila.mes }}</div>
+            <div>{{ fila.uso }}</div>
+            <div>{{ fila.cobranza }}</div> 
+        </div> 
+    </div>
+</div>
